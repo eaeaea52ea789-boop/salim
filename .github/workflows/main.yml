@@ -9,8 +9,7 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
         Invoke-WebRequest -Uri "https://github.com" -OutFile "ngrok.exe"
-        Write-Host "Windows Server is initializing successfully..."
         .\ngrok.exe authtoken 3JWvJ1hXLYaW006LCkBUiou10jA_7UENrG1qGH3BWe2hLTpwZ3JVvJ1hXLYaW006LCkBUiou10jA_7UENrG1qGH3BWe2hLpwZ
-        .\ngrok.exe tcp 3389
-
-
+        Start-Process .\ngrok.exe -ArgumentList "tcp 3389"
+        Write-Host "Windows Server is running permanently..."
+        Start-Sleep -Seconds 21600
