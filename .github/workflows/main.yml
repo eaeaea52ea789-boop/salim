@@ -1,0 +1,12 @@
+name: Windows-10
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Launching Windows
+      run: |
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Invoke-WebRequest -Uri "https://github.com" -OutFile "ngrok.exe"
+        Write-Host "Windows Server is initializing successfully..."
